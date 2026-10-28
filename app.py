@@ -129,7 +129,7 @@ def render_live_telemetry_panel():
         fig_net.add_trace(go.Scatter(x=df_t["timestamp"], y=df_t["rx_kbps"], mode="lines+markers", name="Entrada Total (KB/s)", line=dict(color="#00d4ff", width=2), fill="tozeroy"))
         fig_net.add_trace(go.Scatter(x=df_t["timestamp"], y=df_t["tx_kbps"], mode="lines", name="Salida (KB/s)", line=dict(color="#00ff88", width=2)))
         fig_net.add_trace(go.Scatter(x=df_t["timestamp"], y=df_t["threat_kbps"], mode="lines+markers", name="Tráfico Hostil (KB/s)", line=dict(color="#ff3366", width=3, dash="dot")))
-        fig_net.update_layout(title="🌊 Flujo de Tráfico de Red en Tiempo Real (KB/s)", height=310, margin=dict(l=10, r=10, t=40, b=10), legend=dict(orientation="h", y=1.12))
+        fig_net.update_layout(title=" Flujo de Tráfico de Red en Tiempo Real (KB/s)", height=310, margin=dict(l=10, r=10, t=40, b=10), legend=dict(orientation="h", y=1.12))
         st.plotly_chart(fig_net, use_container_width=True)
 
     with col_live2:
@@ -171,7 +171,7 @@ with tab_soc:
             fig_type = px.bar(df["event_type"].value_counts().reset_index(), x="event_type", y="count", title="Incidentes por Vector de Ataque", color="event_type")
             st.plotly_chart(fig_type, use_container_width=True)
 
-        st.subheader("📋 Bitácora Reciente de Incidentes")
+        st.subheader(" Bitácora Reciente de Incidentes")
         cols_to_show = [c for c in ["id", "timestamp", "source_ip", "abuse_score", "event_type", "severity", "status", "action_taken", "evidence_hash"] if c in df.columns]
         st.dataframe(df[cols_to_show], use_container_width=True, hide_index=True)
     else:
@@ -184,7 +184,7 @@ with tab_intel:
     col_i1, col_i2 = st.columns([1, 1.5])
     with col_i1:
         ip_query = st.text_input("Consultar dirección IP en AbuseIPDB:", "185.220.101.45")
-        if st.button("🔎 Analizar Reputación IP", type="primary", use_container_width=True):
+        if st.button(" Analizar Reputación IP", type="primary", use_container_width=True):
             st.session_state["last_intel"] = check_ip_abuseipdb(ip_query)
     with col_i2:
         if "last_intel" in st.session_state:
@@ -220,7 +220,7 @@ with tab_lynis:
 
 # TAB 4: REGISTRO HISTÓRICO SQL
 with tab_sql:
-    st.subheader("🗄️ Explorador del Registro Histórico en Base de Datos SQL (`sara_soar.db`)")
+    st.subheader(" Explorador del Registro Histórico en Base de Datos SQL (`sara_soar.db`)")
     st.markdown("Consulta directa sobre las tablas relacionales que conforman la persistencia histórica de **S.A.R.A.**")
     table_choice = st.selectbox("Seleccionar tabla SQL a consultar:", ["incidents", "blocked_ips", "lynis_audits"])
     conn = get_connection()
