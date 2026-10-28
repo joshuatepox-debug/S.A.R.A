@@ -38,7 +38,7 @@ st.title(" S.A.R.A. — Sistema Automatizado de Respuesta y Análisis")
 st.caption("CerberusOps v4.0 | Arquitectura SOAR Contenerizada: FastAPI, n8n, AbuseIPDB, Auditorías Lynis, Registro Histórico SQL, Ollama y UFW")
 
 with st.sidebar:
-    st.header("⚡ Panel de Control SOC")
+    st.header(" Panel de Control SOC")
     if st.button(" Simular Ataque en Vivo", use_container_width=True, type="primary"):
         res = simulate_attack()
         st.success(f"Incidente #{res['incident_id']} procesado (AbuseIPDB: {res['abuse_score']}%).")
@@ -100,13 +100,13 @@ with st.sidebar:
     )
 
 tab_soc, tab_intel, tab_lynis, tab_sql, tab_fp, tab_ufw, tab_tg = st.tabs([
-    "📡 Monitor SOC en Vivo",
-    "🌐 Threat Intel (AbuseIPDB)",
-    "🛡️ Auditorías Lynis y Recomendaciones",
-    "🗄️ Registro Histórico SQL",
-    "📄 Dictámenes Forenses PDF",
-    "🧱 Cortafuegos UFW",
-    "📱 n8n, Telegram QR e IA"
+    " Monitor SOC en Vivo",
+    " Threat Intel (AbuseIPDB)",
+    " Auditorías Lynis y Recomendaciones",
+    " Registro Histórico SQL",
+    " Dictámenes Forenses PDF",
+    " Cortafuegos UFW",
+    " n8n, Telegram QR e IA"
 ])
 
 def render_live_telemetry_panel():
@@ -136,7 +136,7 @@ def render_live_telemetry_panel():
         fig_pps = go.Figure()
         fig_pps.add_trace(go.Bar(x=df_t["timestamp"], y=df_t["pps_total"], name="Paquetes Totales/s", marker_color="#3b82f6"))
         fig_pps.add_trace(go.Scatter(x=df_t["timestamp"], y=df_t["malicious_pps"], mode="lines+markers", name="Paquetes Maliciosos/s", line=dict(color="#f97316", width=3)))
-        fig_pps.update_layout(title="⚡ Tasa de Paquetes por Segundo (PPS) vs Eventos Hostiles", height=310, margin=dict(l=10, r=10, t=40, b=10), legend=dict(orientation="h", y=1.12))
+        fig_pps.update_layout(title=" Tasa de Paquetes por Segundo (PPS) vs Eventos Hostiles", height=310, margin=dict(l=10, r=10, t=40, b=10), legend=dict(orientation="h", y=1.12))
         st.plotly_chart(fig_pps, use_container_width=True)
 
 if hasattr(st, "fragment") and live_stream_active:
