@@ -312,7 +312,7 @@ with tab_ufw:
     st.divider()
     if blocked_ips:
         df_b = pd.DataFrame(blocked_ips)
-        df_b["Estado UFW"] = df_b["is_active"].apply(lambda x: "🔴 Bloqueada" if x == 1 else "🟢 Liberada")
+        df_b["Estado UFW"] = df_b["is_active"].apply(lambda x: " Bloqueada" if x == 1 else " Liberada")
         df_b["Lista Blanca"] = df_b["whitelisted"].apply(lambda x: " Sí" if x == 1 else "No")
         st.dataframe(df_b[["ip", "Estado UFW", "Lista Blanca", "reason", "blocked_at"]], use_container_width=True, hide_index=True)
     else:
